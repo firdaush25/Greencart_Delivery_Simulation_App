@@ -1,208 +1,217 @@
-# 🚚 GreenCart Logistics
+# 🚚 Greencart: Delivery Simulation App
 
-**Delivery Simulation & KPI Dashboard for Smarter Logistics Decisions**
+![React](https://img.shields.io/badge/frontend-react-blue?logo=react)
+![Flask](https://img.shields.io/badge/backend-flask-yellow?logo=flask)
+![Supabase](https://img.shields.io/badge/database-supabase-green?logo=supabase)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+![Deploy Backend](https://img.shields.io/badge/render-deployed-success?logo=render)
+![Deploy Frontend](https://img.shields.io/badge/netlify-deployed-success?logo=netlify)
 
-🔗 **Live App:** [firdaushgreencartproject.netlify.app](https://firdaushgreencartproject.netlify.app/)
-
----
-
-## 📦 Project Overview
-
-GreenCart Logistics is a full-stack web application that simulates delivery operations and visualizes key performance indicators (KPIs) to help logistics managers make data-driven decisions. Users can:
-
-- Run delivery simulations based on real-world parameters
-- Analyze KPIs like profit, fuel cost, delivery efficiency, and driver fatigue
-- View historical simulation results in an interactive dashboard
+> A full-stack web app for simulating logistics and delivery operations with real-time tracking, route planning, and historical analytics.
 
 ---
 
-## 🛠️ Tech Stack
+## 📖 Table of Contents
 
-| Layer       | Technologies Used                                                                 |
-|-------------|------------------------------------------------------------------------------------|
-| **Frontend**| React.js, Tailwind CSS, Chart.js, React Toastify                                   |
-| **Backend** | Flask (Python), Flask-JWT-Extended, Flask-CORS, SQLAlchemy ORM                    |
-| **Database**| PostgreSQL / SQLite                                                                |
-| **Deployment**| Netlify (Frontend), Railway / Render / PythonAnywhere (Backend)                 |
-| **Utilities**| Native JS & Python datetime, JWT Auth, Toast Notifications                        |
+- [✨ Overview](#-overview)  
+- [🚀 Features](#-features)  
+- [🛠 Tech Stack](#-tech-stack)  
+- [⚙️ Getting Started](#-getting-started)  
+- [🔐 Environment Variables](#-environment-variables)  
+- [📦 Usage](#-usage)  
+- [🌍 Deployment](#-deployment)  
+- [📁 Folder Structure](#-folder-structure)
+- [📸 Screenshots](#-screenshots)  
+- [🤝 Contributing](#-contributing)  
+- [📄 License](#-license)  
+- [📬 Contact](#-contact)  
 
 ---
 
-## ⚙️ Setup Instructions
+## ✨ Overview
+
+Greencart is a simulation platform for logistics and delivery management. It enables fleet managers to plan routes, assign drivers, monitor delivery status, and analyze historical performance. Built with a modern tech stack and clean UI, it’s designed for scalability, clarity, and impact.
+
+---
+
+## 🚀 Features
+
+- 🔐 JWT-based user authentication  
+- 📍 Route simulation with driver status updates  
+- 🧑‍💼 CRUD operations for drivers, routes, and orders  
+- 📊 Historical tracking and analytics  
+- 🔄 RESTful API with Flask and SQLAlchemy  
+- 📱 Responsive UI with Tailwind CSS  
+- 🗄 PostgreSQL database via Supabase  
+
+---
+
+## 🛠 Tech Stack
+
+| Layer       | Tools & Frameworks                             |
+|------------|-------------------------------------------------|
+| Frontend   | React, React Router, Axios, Tailwind CSS        |
+| Backend    | Flask, Flask-JWT-Extended, Flask-CORS, SQLAlchemy |
+| Database   | PostgreSQL (Supabase)                           |
+| Deployment | Render (backend), Netlify (frontend)            |
+| Auth       | JWT Tokens                                      |
+
+---
+
+## ⚙️ Getting Started
 
 ### 🔧 Prerequisites
 
-- Python 3.8+
-- Node.js & npm
-- Git
-
----
+- Node.js & npm/yarn  
+- Python 3.8+  
+- Supabase account  
+- Render & Netlify accounts (optional)
 
 ### 🐍 Backend Setup
 
 ```bash
-# Clone the repo
-git clone <your-repo-url>
-cd your-backend-folder
-
-# Create virtual environment
+cd backend
 python -m venv venv
-source venv/bin/activate       # Linux/macOS
-venv\Scripts\activate.bat      # Windows
-
-# Install dependencies
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-
-# Create .env file
-FLASK_APP=run.py
-FLASK_ENV=development
-SECRET_KEY=your_secret_key
-JWT_SECRET_KEY=your_jwt_secret
-DATABASE_URL=your_database_connection_string
-
-# Initialize DB
-flask db init
-flask db migrate
-flask db upgrade
-
-# Run server
-flask run
 ```
 
----
+Create a `.env` file:
+
+```env
+DATABASE_URL=your_supabase_postgres_connection_string
+JWT_SECRET_KEY=your_jwt_secret_key
+```
+
+Run the server:
+
+```bash
+flask run
+```
 
 ### ⚛️ Frontend Setup
 
 ```bash
-# Navigate to frontend
-cd your-frontend-folder
+cd frontend
+npm install  # or yarn install
+```
 
-# Install dependencies
-npm install
+Create `.env` file:
 
-# Create .env file
+```env
 REACT_APP_API_URL=http://localhost:5000
+```
 
-# Start development server
-npm start
+Run the frontend:
+
+```bash
+npm start  # or yarn start
 ```
 
 ---
 
-## 🌐 Environment Variables
+## 🔐 Environment Variables
 
-### Backend `.env`
-
-| Key              | Description                                 |
-|------------------|---------------------------------------------|
-| `FLASK_APP`      | Flask entry point (e.g., `run.py`)          |
-| `FLASK_ENV`      | Environment mode (`development`/`production`)|
-| `SECRET_KEY`     | Flask session secret                        |
-| `JWT_SECRET_KEY` | JWT authentication secret                   |
-| `DATABASE_URL`   | DB connection string                        |
-
-### Frontend `.env`
-
-| Key                   | Description                          |
-|-----------------------|--------------------------------------|
-| `REACT_APP_API_URL`   | Backend API base URL                 |
+| Variable            | Description                                  |
+|---------------------|----------------------------------------------|
+| `DATABASE_URL`      | Supabase PostgreSQL connection string        |
+| `JWT_SECRET_KEY`    | Secret key for JWT token generation          |
+| `REACT_APP_API_URL` | Backend API base URL (used by frontend)      |
 
 ---
 
-## 🚀 Deployment Guide
+## 📦 Usage
 
-### Frontend (Netlify)
-
-1. Connect GitHub repo to Netlify  
-2. Set build command: `npm run build`  
-3. Set publish directory: `build/`  
-4. Deploy — Netlify handles CI/CD on push
-
-### Backend (Railway / Render / PythonAnywhere)
-
-1. Push code or connect GitHub repo  
-2. Set environment variables  
-3. Configure service to run Flask (`flask run` or `gunicorn`)  
-4. Enable CORS for frontend domain
+1. Register/login as a manager  
+2. Add drivers, routes, and orders  
+3. Run delivery simulations  
+4. View real-time updates and historical analytics  
 
 ---
 
-## 📊 API Documentation
+## 🌍 Deployment
 
-### Base URL
+- 🔧 Backend: [Render](https://render.com)  
+- 🎨 Frontend: [Netlify](https://netlify.com)  
+- ✅ Environment variables securely configured on both platforms
 
-```
-http://<backend-host>/simulate
+---
+
+## 📁 Folder Structure
+
+```bash
+/backend
+  ├── routes/         # API blueprints
+  ├── models.py       # SQLAlchemy models
+  └── app.py          # Flask entrypoint
+
+/frontend
+  └── src/
+      ├── components/ # React components
+      └── api.js      # Axios instance
+
+README.md             # Project documentation
 ```
 
 ---
 
-### 🔁 Run Simulation
+## 📸 Screenshots
 
-- **POST** `/`
-- **Description:** Simulates delivery run and returns KPIs
-- **Request Body:**
-```json
-{
-  "num_drivers": 10,
-  "start_time": "2025-08-13 06:00:00",
-  "max_hours": 8
-}
-```
-- **Response Example:**
-```json
-{
-  "total_profit": 1200.50,
-  "efficiency_score": 85.0,
-  "fuel_cost": 500,
-  "late_percentage": 15.0,
-  "total_deliveries": 100,
-  "avg_order_value": 30.0
-}
-```
+> _A glimpse into Greencart’s simulation dashboard:_
 
----
+<img width="788" height="946" alt="image" src="https://github.com/user-attachments/assets/471625bd-7ba8-4fcd-9e26-fabedbc2eca4" />
 
-### 📜 Get Simulation History
+### Key Metrics Displayed:
 
-- **GET** `/history`
-- **Description:** Returns list of past simulation runs
-- **Response Example:**
-```json
-[
-  {
-    "id": 1,
-    "total_profit": 1200.50,
-    "timestamp": "2025-08-13 06:00:00",
-    "efficiency_score": 85.0,
-    "fuel_cost": 500
-  },
-  ...
-]
-```
+- 💰 **Total Profit**: ₹78,327.80  
+- ⚡ **Efficiency Score**: 100.00%  
+- 🕒 **Late Deliveries**: 0.00%  
+- 📦 **Avg Order Value**: ₹1,530.08  
+
+### Visual Insights:
+
+- 📊 **Delivery Performance**: On-time vs Late bar chart  
+- ⛽ **Fuel Cost Breakdown**: Pie chart  
+- 🚚 **First Attempt Delivery Rate**: Pie chart  
+- 📈 **Profit Over Time**: Line graph  
+- 📉 **Profit Margin Trend**: Line graph  
+- ⏱ **Avg Time Per Delivery**: Line graph  
+- 🧮 **On-Time vs Late Over Time**: Comparative bar chart  
 
 ---
+### 🧪 Simulation Interface
+#### > Configure delivery parameters and run simulations to evaluate fleet performance.
 
-### 🧩 Additional APIs
+🎛 Input Parameters
+👥 Number of Drivers: 3
+⏰ Start Time: 10:00
+⌛ Max Hours/Driver: 4
+▶️ Action: Run Simulation
 
-- **Orders CRUD** — Create, read, update, delete orders  
-- **Routes CRUD** — Manage delivery routes  
-- **Drivers List** — View driver shifts and fatigue metrics  
-
----
-
-## 🔐 Notes
-
-- All API requests require JWT authentication (`Authorization: Bearer <token>`)
-- Date-time format: `"YYYY-MM-DD HH:mm:ss"`
-- KPIs factor in fatigue, traffic, route distance, and business rules
+<img width="1174" height="915" alt="image" src="https://github.com/user-attachments/assets/d53a4866-ab31-4682-ad00-f992c52d8b70" />
 
 ---
-
-## 💬 Contact
-
-Feel free to reach out for setup help, feedback, or collaboration ideas!
-
+### 🧭 Management Console Overview
+#### A unified dashboard for managing drivers, routes, and orders with real-time control and CRUD operations upon API.
+<img width="777" height="893" alt="image" src="https://github.com/user-attachments/assets/c36a5bd5-589c-4236-96c4-804b4e070bca" />
 ---
 
 
+## 🤝 Contributing
+
+Pull requests are welcome!  
+Fork the repo → Create a branch → Make changes → Submit PR
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 📬 Contact
+
+Created by **Firdaush Alam**  
+Let’s connect on **[LinkedIn]** (https://www.linkedin.com/firdaush-alam) or 
+**[Portfolio]** (https://firdaushalamportfolio.netlify.app/)
